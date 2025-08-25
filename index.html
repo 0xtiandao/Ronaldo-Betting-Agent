@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronaldo Betting Agent - AI Sports Betting</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>Ronaldo AI Agent</h1>
+            </div>
+            <div class="wallet-info">
+                <button id="connectWallet" class="btn btn-primary">
+                    <i class="fas fa-wallet"></i>
+                    Connect Solana Wallet
+                </button>
+                <div id="walletConnected" class="wallet-connected" style="display: none;">
+                    <span id="walletAddress"></span>
+                    <span id="balance">0 SOL</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Chat Interface -->
+            <section class="chat-section">
+                <div class="chat-header">
+                    <h2><i class="fas fa-comments"></i> Chat with Ronaldo AI</h2>
+                    <div class="status">
+                        <span class="status-indicator online"></span>
+                        <span>Ronaldo is online</span>
+                    </div>
+                </div>
+                
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message bot-message">
+                            <div class="avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm Ronaldo AI Agent. I can help you bet on football matches. Tell me which match you want to bet on!</p>
+                                <span class="timestamp">just now</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Type your message..." maxlength="500">
+                        <button id="sendMessage" class="btn-send">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Betting Dashboard -->
+            <section class="betting-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-futbol"></i> Current Matches</h2>
+                    <button id="refreshMatches" class="btn btn-secondary">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                </div>
+                
+                <div id="matchesContainer" class="matches-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Loading matches...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Betting History -->
+            <section class="history-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Betting History</h2>
+                </div>
+                
+                <div id="bettingHistory" class="betting-history">
+                    <div class="no-history">
+                        <i class="fas fa-info-circle"></i>
+                        <p>No betting history yet</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wallet Management -->
+            <section class="wallet-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-coins"></i> Wallet Management</h2>
+                </div>
+                
+                <div class="wallet-actions">
+                    <div class="balance-display">
+                        <div class="balance-item">
+                            <span class="label">SOL Balance:</span>
+                            <span id="solBalance" class="value">0.000</span>
+                        </div>
+                        <div class="balance-item">
+                            <span class="label">Betting Token:</span>
+                            <span id="bettingTokenBalance" class="value">0.000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="depositBtn" class="btn btn-success">
+                            <i class="fas fa-plus"></i>
+                            Deposit
+                        </button>
+                        <button id="withdrawBtn" class="btn btn-warning">
+                            <i class="fas fa-minus"></i>
+                            Withdraw
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Deposit to Wallet</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="depositAmount">SOL Amount:</label>
+                    <input type="number" id="depositAmount" step="0.001" min="0.001" placeholder="0.000">
+                </div>
+                <button id="confirmDeposit" class="btn btn-primary">Confirm Deposit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Withdraw from Wallet</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="withdrawAmount">SOL Amount:</label>
+                    <input type="number" id="withdrawAmount" step="0.001" min="0.001" placeholder="0.000">
+                </div>
+                <button id="confirmWithdraw" class="btn btn-primary">Confirm Withdrawal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/solana-wallet.js"></script>
+    <script src="js/odds-api.js"></script>
+    <script src="js/ai-agent.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
